@@ -6,7 +6,7 @@
     `python -m venv .venv`
 
 2. Correr o .venv:
-    1. Windows ->  `.venv\Scripts\activate.bat`
+    1. Windows ->  `.venv\Scripts\activate`
     2. Mac / Linux -> `source .venv/bin/activate` 
 
 3. Instalar pacotes:
