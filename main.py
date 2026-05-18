@@ -1,10 +1,11 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
 
 
 def loadDataset():
-    df = pd.read_csv("Datasets/airport_traffic_2025.csv", sep=",")
+
+    df = pd.read_csv("Datasets/airport_traffic/airport_traffic_2025.csv", sep=";")
     return df
 
 
@@ -32,7 +33,7 @@ def cleanDataset(df):
     return df
 
 
-def transformDatase(df):
+def transformDataset(df):
     # Transforma 'FLT_DATE' no formato datetime do python
     # NOT WORKING FIX THIS df["FLT_DATE"] = pd.to_datetime(df["FLT_DATE"])
 
@@ -82,8 +83,9 @@ cleanDataset(df)
 print(df)
 
 # Data transformation
-transformDatase(df)
+transformDataset(df)
 print(df)
+
 
 # Data representation
 # Data visualization
