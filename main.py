@@ -4,7 +4,6 @@ import seaborn as sns
 
 
 def loadDataset():
-
     df = pd.read_csv("Datasets/airport_traffic/airport_traffic_2025.csv", sep=";")
     return df
 
@@ -74,23 +73,30 @@ def plot_top_airports(df):
     plt.show()
 
 
-# Load the dataset into Python
-df = loadDataset()
-print(df)
-
-# Data cleaning
-cleanDataset(df)
-print(df)
-
-# Data transformation
-transformDataset(df)
-print(df)
-
-
 # Data representation
+
+
 # Data visualization
 # Generate graphs
 # plot_top_airports(df)
 
 # Data integration
 # Employ exploratory data analysis techniques.
+
+
+def main():
+    # Load the dataset into Python
+    df = loadDataset()
+    print(df)
+
+    # Data cleaning
+    cleanDataset(df)
+    print(df)
+
+    # Data transformation
+    transformDataset(df)
+    print(df)
+
+
+if __name__ == "__main__":
+    main()
