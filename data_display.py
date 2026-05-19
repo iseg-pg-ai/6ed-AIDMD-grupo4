@@ -4,51 +4,6 @@ import seaborn as sns
 from scipy import stats
 
 
-def loadDataset():
-    df = pd.read_csv("Datasets/airport_traffic/airport_traffic_2025.csv", sep=",")
-    return df
-
-
-# Data cleaning
-def cleanDataset(df):
-    df.columns = df.columns.str.strip()
-    flt_cols = [col for col in df.columns if col.strip().startswith("FLT")]
-
-    for col in flt_cols:
-        df[col] = df[col].astype(str).str.strip()
-        df[col] = pd.to_numeric(df[col], errors="coerce")
-    df[flt_cols] = df[flt_cols].fillna(0).astype(int)
-
-    return df
-
-
-# Data transformation
-def transformDataset(df):
-    df["DAY_OF_WEEK"] = pd.to_datetime(df["FLT_DATE"]).dt.day_name()
-
-    # Calculate the difference between Airport Controller and Network Manager, setting it to 0 if Airport Controller is 0
-    df["DIFF_ARRIVALS"] = df.apply(
-        lambda row: (
-            row["FLT_ARR_1"] - row["FLT_ARR_IFR_2"] if row["FLT_ARR_IFR_2"] != 0 else 0
-        ),
-        axis=1,
-    )
-    df["DIFF_DEPARTURES"] = df.apply(
-        lambda row: (
-            row["FLT_DEP_1"] - row["FLT_DEP_IFR_2"] if row["FLT_DEP_IFR_2"] != 0 else 0
-        ),
-        axis=1,
-    )
-    df["DIFF_TOTAL"] = df.apply(
-        lambda row: (
-            row["FLT_TOT_1"] - row["FLT_TOT_IFR_2"] if row["FLT_TOT_IFR_2"] != 0 else 0
-        ),
-        axis=1,
-    )
-
-    return df
-
-
 # Data representation
 def descriptive_analytics(df):
     summary_stats = df.describe()
@@ -112,7 +67,3 @@ def plot_top_diffs(df):
     plt.ylabel("Airport Name")
     plt.tight_layout()
     plt.show()
-
-
-# Data integration
-# Employ exploratory data analysis techniques.
